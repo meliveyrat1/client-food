@@ -3,7 +3,7 @@ import axios from "axios";
 
 export function getRecipes() {
 	return (dispatch) => {
-		axios.get("http://localhost:3001/recipes")
+		axios.get("/recipes")
 		.then((response) => {
 			dispatch({ type: "GET_RECIPES", payload: response.data });
 		}).catch(()=> alert("Recipe not found"))
@@ -12,7 +12,7 @@ export function getRecipes() {
 
 export function getRecipesByName(name) {
 	return (dispatch) => {
-		axios.get("http://localhost:3001/recipes?name=" + name)
+		axios.get("/recipes?name=" + name)
 		.then((response) => {
 			dispatch({ type: "GET_RECIPES_BY_NAME", payload: response.data });
 		}).catch(()=> alert("Recipe not found"))
@@ -20,7 +20,7 @@ export function getRecipesByName(name) {
 }
 export function getDiets() {
 	return (dispatch) => {
-		axios.get("http://localhost:3001/types")
+		axios.get("/types")
 		.then((response) => {
 			dispatch({ type: "GET_DIETS", payload: response.data });
 		}).catch(()=> alert("Diet not found"))
@@ -31,7 +31,7 @@ export function getDiets() {
  export function postRecipe(payload) {
   return async function (dispatch) {
     try {
-      const json = await axios.post("http://localhost:3001/recipe", payload);
+      const json = await axios.post("/recipe", payload);
       return json;
     } catch (error) {
       alert("POST ERROR")
@@ -74,7 +74,7 @@ export function orderByLike(payload) {
 
 export function getDetails(id) {
 	return (dispatch) => {
-		axios.get("http://localhost:3001/recipes/" + id)
+		axios.get("/recipes/" + id)
 		.then((response) => {
 			dispatch({ type: "GET_DETAILS", payload: response.data });
 		}).catch(()=> alert(`Ups...we dont have a recipe with ${id} as ID `))
@@ -99,7 +99,7 @@ export function removeDetail() {
    export function removeRecipe (id) {
   return async function(dispatch){
     try {
-    await axios.delete("http://localhost:3001/recipe/" + id)
+    await axios.delete("/recipe/" + id)
       return dispatch({
 				type: "REMOVE_RECIPE",
 				payload: id,
